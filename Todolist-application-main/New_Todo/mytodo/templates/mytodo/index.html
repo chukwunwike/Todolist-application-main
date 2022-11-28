@@ -1,0 +1,112 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<style>
+    body{
+        background-color: #F4F3EE;
+    }
+    main{
+        max-width: 500px;
+        /* width: 30%; */
+        padding:15px;
+        border: 1px solid beige;
+        margin: auto;
+        background-color: #BCB8B1;
+    }
+
+    #inputarea{
+        width:85%;
+        height: 5vh;
+    }
+
+    #logout{
+        display: flex;
+        text-decoration: none;
+        margin: 10px;
+        border: 1px solid grey;
+        padding: 3px;
+        width: 15%;
+        justify-content: center;
+        color: black;
+        border-radius: 5px;
+    }
+    
+    #logout:hover{
+
+        background-color: #1B98E0;
+    }
+
+    #deletebutton{
+        float: right;
+        text-decoration: none;
+        border: 1px solid  grey;
+        padding: 3px;
+        color: black;
+        border-radius: 5px;
+        background-color: #247BA0;
+        color: azure;
+    }
+
+
+    #deletebutton:hover{
+        background-color: #1B98E0;
+    }
+
+    li{
+        margin-top: 15px;
+    }
+
+    .container{
+        
+    }
+</style>
+<body>
+<main>
+    <form  method="POST">
+        {% csrf_token %}
+       
+
+        
+
+        <div class="container">
+            <input  type="textarea" name="title" id="inputarea">
+            <button  type="submit" >Add</button>
+
+            <a id="logout" href="{% url 'mytodo:logout' %}">logout</a>
+        </div>
+
+        
+        <ul>
+
+            {% for todo in mytodo reversed %}
+
+               <li>{{todo.title|title }}<a class="fa fa-times" id="deletebutton" href="/delete/{{todo.id}}">Delete</a> </li>
+
+
+            {% empty %}
+
+               <h3>No items in list</h3>
+
+         
+
+            {% endfor %}
+
+
+        </ul>
+
+      
+
+
+
+
+    </form>
+
+</main>
+    
+</body>
+</html>
